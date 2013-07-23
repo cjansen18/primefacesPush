@@ -1,0 +1,27 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Welcome!</title>
+        <script type="text/javascript">
+            //<![CDATA[
+            function handleMessage(data) {
+                $('.display').html(data);
+            }
+            //]]> 
+        </script>
+    </h:head>
+    <h:body>
+        <h1 class="title ui-widget-header ui-corner-all">PrimeFaces Push - Counter</h1>
+        <h:form id="form">
+            <h:outputText id="out" value="#{globalCounter.count}" styleClass="ui-widget display" />
+            <br/>
+            <p:commandButton value="Click" actionListener="#{globalCounter.increment}" />
+        </h:form>
+        <p:socket onMessage="handleMessage" channel="/counter" />
+    </h:body>        
+</html>
+
